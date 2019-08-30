@@ -1,4 +1,5 @@
-
+### ViewModel
+-------------------
 
 A ViewModel holds your app's UI data while surviving configuration changes. Here's why that's actually useful. Rotating your phone is considered a configuration change. Configuration changes cause your whole activity to get torn down and then recreated. If you don't properly save and restore data from the destroyed activity, you may lose that data and end up with weird UI bugs or even crashes.
 
@@ -34,7 +35,7 @@ You can now directly reference LiveData fields from your ViewModel in your XML. 
 Note that this became available at Android Studio 3.1 and higher, so make sure you're on the correct version. To learn more, check out
 the Introduction to LiveData in the docs.
 
- you should never pass contexts into ViewModels. This means no passing in fragments, activities, or views.
+ You should never pass contexts into ViewModels. This means no passing in fragments, activities, or views.
 As you saw earlier,ViewModels can outlive your specific activity and fragment lifecycles.
 
 Let's say that you store an activity in your ViewModel. When you rotate the screen, that activity is destroyed. You now have a ViewModel
@@ -46,67 +47,9 @@ ViewModels are meant to be used in addition to onSaveInstanceState.
 
 ViewModels do not survive process shutdown due to resource restrictions. But onSaveInstance bundles do. ViewModels are great for storing huge amounts of data. 
 
-onSaveInstanceState
+onSaveInstanceState bundles, not so much. Use ViewModels to store as much UI data as possible so that that data doesn't need to be reloaded or regenerated during a configuration change.
 
-bundles, not so much.
+onSaveInstanceState, on the other hand, should store the smallest amount of data needed to restore the UI state if the process is shut down by the framework.
 
-Use ViewModels to store as
-
-much UI data as possible
-
-so that that data doesn't need
-
-to be reloaded or regenerated
-
-during a configuration change.
-
-onSaveInstanceState,
-
-on the other hand,
-
-should store the
-
-smallest amount of data
-
-needed to restore the UI state
-
-if the process is shut down
-
-by the framework.
-
-So for example, you might
-
-store all of the user's data
-
-within the ViewModel but just
-
-store the user's database ID
-
-in onSaveInstanceState.
-
-Hopefully this has inspired you
-
-to try out the new ViewModel
-
-class in your apps
-
-either by itself
-
-or with the other
-
-architecture components.
-
-To learn more about
-
-using ViewModels or any
-
-of the information
-
-that I just mentioned,
-
-check out the
-
-documentation below.
-
-[JET BLAST]
+So for example, you might store all of the user's data within the ViewModel but just store the user's database ID in onSaveInstanceState.
 
